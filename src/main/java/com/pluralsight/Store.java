@@ -19,15 +19,14 @@ public class Store {
 
     public static void main(String[] args) {
 
-        // Initialize variables
         double totalAmount = 0.0;
-
-        // Lod inventory from CSV file
         loadInventory(FILE_NAME, inventory);
 
 
-        // Display menu and get user choice until they choose to exit
         while (running) {
+            System.out.println("Please enter your user name.");
+            String userName = myScanner.nextLine();
+            System.out.println("Hello " +  userName + " !");
             System.out.println("Welcome to the Online Store!");
             System.out.println("1. Show Products");
             System.out.println("2. Show Cart");
@@ -40,7 +39,7 @@ public class Store {
                     displayProducts(inventory, cart, myScanner);
                     break;
                 case "2":
-                    displayCart(cart, myScanner, totalAmount);
+                    displayCart(cart, myScanner, totalAmount, userName);
                     break;
                 case "3":
                     System.out.println("Thank you for shopping with us!");
@@ -114,36 +113,22 @@ public class Store {
         // add the selected product to the cart ArrayList.
     }
 
-//    public static void addToCart(Scanner myScanner) {
-//        System.out.println("Please enter ID of product.");
-//        String id = myScanner.nextLine();
-//            Product product = findProductById(id);
-//            if (product != null){
-//                boolean found = false;
-//                for (Product item : cart){
-//                    if (item.getId().equals(id)){
-//                        found = true;
-//                        break;
-//                    }
-//                }
-//               // if (!found) cart.add(new Product(product));
-//                double totalAmount = product.getPrice();
-//                System.out.println("Product added to cart.");
-//            } else {
-//                System.out.println("Product not found.");
-//            }
-//
-//    }
+     public static double calculatePrice(ArrayList<Product> cart, double totalAmount){
+         for (Product product : cart) {
+             double productPrice = product.getPrice();
+             totalAmount += productPrice;
+         }
+         return totalAmount;
+     }
 
 
-    public static void displayCart(ArrayList<Product> cart, Scanner myScanner, double totalAmount) {
-        System.out.println("Please enter your user name.");
-        String userName = myScanner.nextLine();
-        System.out.println("Hello " +  userName + " !");
+    public static void displayCart(ArrayList<Product> cart, Scanner myScanner, double totalAmount, String userName) {
+
         System.out.println(userName + "'s cart: ");
         for (Product product : cart) {
             System.out.println(product.getName());
         }
+        calculatePrice(cart, totalAmount);
         System.out.println("Total Amount: $" + totalAmount);
         System.out.println("Options: ");
         System.out.println("1. Check Out");
@@ -153,7 +138,6 @@ public class Store {
         switch (choice) {
             case 1:
                 checkOut(cart, totalAmount);
-                //checkOut(myScanner);
                 break;
             case 2:
                 System.out.println("Enter the ID of the product you want to remove from your cart (or type 'Back' to go back):");
