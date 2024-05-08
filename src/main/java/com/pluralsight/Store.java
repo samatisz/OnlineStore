@@ -137,12 +137,12 @@ public class Store {
 
 
     public static void displayCart(ArrayList<Product> cart, Scanner myScanner, double totalAmount) {
-        Scanner userName = new Scanner(System.in);
-        userName.nextLine();
-        System.out.println("Hello" + userName + " !");
-        System.out.println(userName + "cart: ");
+        System.out.println("Please enter your user name.");
+        String userName = myScanner.nextLine();
+        System.out.println("Hello " +  userName + " !");
+        System.out.println(userName + "'s cart: ");
         for (Product product : cart) {
-            System.out.println(product);
+            System.out.println(product.getName());
         }
         System.out.println("Total Amount: $" + totalAmount);
         System.out.println("Options: ");
@@ -153,7 +153,7 @@ public class Store {
         switch (choice) {
             case 1:
                 checkOut(cart, totalAmount);
-                //   checkOut(myScanner);
+                //checkOut(myScanner);
                 break;
             case 2:
                 System.out.println("Enter the ID of the product you want to remove from your cart (or type 'Back' to go back):");
@@ -172,7 +172,7 @@ public class Store {
                 System.out.println("Invalid choice.");
         }
     }
-    
+
         //System.out.println(userName);
         // This method should display the items in the cart ArrayList, along
         // with the total cost of all items in the cart. The method should
