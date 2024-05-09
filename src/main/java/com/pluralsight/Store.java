@@ -23,10 +23,10 @@ public class Store {
         loadInventory(FILE_NAME, inventory);
 
 
+        System.out.println("Please enter your user name.");
+        String userName = myScanner.nextLine();
         while (running) {
-            System.out.println("Please enter your user name.");
-            String userName = myScanner.nextLine();
-            System.out.println("Hello " +  userName + " !");
+            System.out.println("Hello " + userName + " !");
             System.out.println("Welcome to the Online Store!");
             System.out.println("1. Show Products");
             System.out.println("2. Show Cart");
@@ -113,13 +113,14 @@ public class Store {
         // add the selected product to the cart ArrayList.
     }
 
-     public static double calculatePrice(ArrayList<Product> cart, double totalAmount){
-         for (Product product : cart) {
-             double productPrice = product.getPrice();
-             totalAmount += productPrice;
-         }
-         return totalAmount;
-     }
+    public static double calculatePrice(ArrayList<Product> cart) {
+        double totalAmount = 0;
+        for (Product product : cart) {
+            double productPrice = product.getPrice();
+            totalAmount += productPrice;
+        }
+        return totalAmount;
+    }
 
 
     public static void displayCart(ArrayList<Product> cart, Scanner myScanner, double totalAmount, String userName) {
@@ -128,7 +129,7 @@ public class Store {
         for (Product product : cart) {
             System.out.println(product.getName());
         }
-        calculatePrice(cart, totalAmount);
+        totalAmount = calculatePrice(cart);
         System.out.println("Total Amount: $" + totalAmount);
         System.out.println("Options: ");
         System.out.println("1. Check Out");
@@ -157,12 +158,12 @@ public class Store {
         }
     }
 
-        //System.out.println(userName);
-        // This method should display the items in the cart ArrayList, along
-        // with the total cost of all items in the cart. The method should
-        // prompt the user to remove items from their cart by entering the ID
-        // of the product they want to remove. The method should update the cart ArrayList and totalAmount
-        // variable accordingly.
+    //System.out.println(userName);
+    // This method should display the items in the cart ArrayList, along
+    // with the total cost of all items in the cart. The method should
+    // prompt the user to remove items from their cart by entering the ID
+    // of the product they want to remove. The method should update the cart ArrayList and totalAmount
+    // variable accordingly.
 
 
     public static void checkOut(ArrayList<Product> cart, double totalAmount) {
@@ -175,8 +176,8 @@ public class Store {
         System.out.println("Total amount: " + totalAmount);
 
         System.out.println("Confirm purchase? (yes/no): ");
-        myScanner.nextLine();
-        if (myScanner.equals("yes")) {
+        String response = myScanner.nextLine();
+        if (response.equals("yes")) {
             System.out.println("Purchase confirmed! Total amount of $" + totalAmount);
         } else {
             System.out.println("Purchase cancelled!");
