@@ -77,12 +77,6 @@ public class Store {
         }
     }
 
-    // This method should read a CSV file with product information and
-    // populate the inventory ArrayList with Product objects. Each line
-    // of the CSV file contains product information in the following format:
-    // id,name,price
-    // where id is a unique string identifier, name is the product name,
-    // price is a double value representing the price of the product
 
     public static void displayProducts(ArrayList<Product> inventory, ArrayList<Product> cart, Scanner myScanner) {
         for (Product product : inventory) {
@@ -105,12 +99,6 @@ public class Store {
 
         }
 
-
-        // This method should display a list of products from the inventory,
-        // and prompt the user to add items to their cart. The method should
-        // prompt the user to enter the ID of the product they want to add to
-        // their cart. The method should
-        // add the selected product to the cart ArrayList.
     }
 
     public static double calculatePrice(ArrayList<Product> cart) {
@@ -157,13 +145,6 @@ public class Store {
                 System.out.println("Invalid choice.");
         }
     }
-
-    //System.out.println(userName);
-    // This method should display the items in the cart ArrayList, along
-    // with the total cost of all items in the cart. The method should
-    // prompt the user to remove items from their cart by entering the ID
-    // of the product they want to remove. The method should update the cart ArrayList and totalAmount
-    // variable accordingly.
 
 
     public static void checkOut(ArrayList<Product> cart, double totalAmount) {
